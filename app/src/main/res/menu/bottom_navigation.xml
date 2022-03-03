@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/HomeFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_outline_home"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/RepoFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_round_repo"
+        android:title="@string/repo" />
+    <item
+        android:id="@+id/AccountsFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_round_accounts"
+        android:title="@string/accounts" />
+    <item
+        android:id="@+id/MoreFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_round_apps"
+        android:title="@string/more" />
+</menu>

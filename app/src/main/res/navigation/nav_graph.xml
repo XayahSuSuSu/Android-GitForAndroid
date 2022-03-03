@@ -3,26 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/HomeFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.xayah.gitforandroid.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+        android:id="@+id/HomeFragment"
+        android:name="com.xayah.gitforandroid.fragment.home.HomeFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_home">
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.xayah.gitforandroid.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+        android:id="@+id/RepoFragment"
+        android:name="com.xayah.gitforandroid.fragment.repo.RepoFragment"
+        android:label="@string/repo">
+    </fragment>
+    <fragment
+        android:id="@+id/AccountsFragment"
+        android:name="com.xayah.gitforandroid.fragment.accounts.AccountsFragment"
+        android:label="@string/accounts">
+    </fragment>
+    <fragment
+        android:id="@+id/MoreFragment"
+        android:name="com.xayah.gitforandroid.fragment.more.MoreFragment"
+        android:label="@string/more"
+        tools:layout="@layout/fragment_more">
     </fragment>
 </navigation>
