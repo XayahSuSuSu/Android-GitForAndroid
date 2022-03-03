@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.xayah.gitforandroid.databinding.FragmentMoreBinding
+import com.xayah.gitforandroid.fragment.home.HomeViewModel
 
 
 class MoreFragment : Fragment() {
@@ -24,6 +26,7 @@ class MoreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = ViewModelProvider(this)[MoreViewModel::class.java]
     }
 
     override fun onDestroyView() {

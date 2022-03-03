@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -22,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        binding.viewModel = viewModel
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
@@ -48,6 +51,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.bottomNavigation.setupWithNavController(navController)
+        viewModel.versionName =
+            this.packageManager.getPackageInfo(this.packageName, 0).versionName
     }
 
     override fun onSupportNavigateUp(): Boolean {
