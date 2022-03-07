@@ -23,6 +23,10 @@ class HomeViewModel : ViewModel() {
         val binding = DialogGitconfigBinding.inflate((context as Activity).layoutInflater)
         binding.textFieldName.setText(ShellUtils.fastCmd("git config user.name"))
         binding.textFieldEmail.setText(ShellUtils.fastCmd("git config user.email"))
+        binding.textLayoutName.error =
+            if (binding.textFieldName.text.toString() == "") context.getString(R.string.type_name) else null
+        binding.textLayoutEmail.error =
+            if (binding.textFieldEmail.text.toString() == "") context.getString(R.string.type_email) else null
         binding.textFieldName.doAfterTextChanged {
             if (it?.isEmpty() == true) {
                 binding.textLayoutName.error = context.getString(R.string.type_name)
@@ -67,10 +71,10 @@ class HomeViewModel : ViewModel() {
         gitVersion.set(getVersion())
     }
 
-    private fun getConfig(): String {
+    fun getConfig(): String {
         val name = ShellUtils.fastCmd("git config user.name")
         val email = ShellUtils.fastCmd("git config user.email")
         val config = "$name <${email}>"
-        return if (email.isEmpty()) "Not configured" else config
+        return if (email.isEmpty()) "" else config
     }
 }

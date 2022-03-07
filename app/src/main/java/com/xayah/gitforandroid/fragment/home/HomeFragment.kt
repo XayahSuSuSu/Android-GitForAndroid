@@ -78,6 +78,9 @@ class HomeFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 builder.dismiss()
                 viewModel.updateVersion()
+                if (viewModel.getConfig() == "") {
+                    viewModel.onConfigDialog(requireView())
+                }
             }
         }
     }
