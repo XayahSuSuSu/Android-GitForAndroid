@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.ProgressBar
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -51,19 +52,22 @@ class HomeFragment : Fragment() {
 
     private fun extractAssets() {
         val context = requireContext()
-        val builder = MaterialAlertDialogBuilder(context)
-            .setTitle(context.getString(R.string.wait))
-            .setCancelable(false)
-            .show()
-        val mParam = LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        mParam.setMargins(0, 200, 0, 100)
-        builder.addContentView(ProgressBar(context), mParam)
-        val params: WindowManager.LayoutParams = builder.window!!.attributes
-        builder.window!!.attributes = params
+        var builder: AlertDialog? = null
         CoroutineScope(Dispatchers.IO).launch {
             if (!Command.ls("${Path.getExternalFilesDir(context)}/bin/git")) {
+                withContext(Dispatchers.Main) {
+                    builder = MaterialAlertDialogBuilder(context)
+                        .setTitle(context.getString(R.string.wait))
+                        .setCancelable(false)
+                        .show()
+                    val mParam = LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
+                    )
+                    mParam.setMargins(0, 200, 0, 100)
+                    builder?.addContentView(ProgressBar(context), mParam)
+                    val params: WindowManager.LayoutParams = builder?.window!!.attributes
+                    builder?.window!!.attributes = params
+                }
                 Tool.extractAssets(context, "zstd")
                 Tool.extractAssets(context, "git.zip.zst")
                 Shell.cmd("chmod 777 ${Path.getExternalFilesDir(context)}/zstd").exec()
@@ -76,7 +80,7 @@ class HomeFragment : Fragment() {
                 Command.rm("${Path.getExternalFilesDir(context)}/git.zip")
             }
             withContext(Dispatchers.Main) {
-                builder.dismiss()
+                builder?.dismiss()
                 viewModel.updateVersion()
                 if (viewModel.getConfig() == "") {
                     viewModel.onConfigDialog(requireView())
