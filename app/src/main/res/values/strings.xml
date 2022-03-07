@@ -13,4 +13,5 @@
     <string name="type_name">Please type name</string>
     <string name="type_email">Please type email address</string>
     <string name="check_config">Please check config</string>
+    <string name="wait">Wait</string>
 </resources>
