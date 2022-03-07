@@ -6,6 +6,9 @@ import com.topjohnwu.superuser.Shell
 import com.xayah.gitforandroid.util.Command
 import com.xayah.gitforandroid.util.Path
 import com.xayah.gitforandroid.util.Tool
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class App : Application() {
@@ -23,21 +26,24 @@ class App : Application() {
 
     class EnvInitializer : Shell.Initializer() {
         override fun onInit(context: Context, shell: Shell): Boolean {
-            if (!Command.ls("${Path.getExternalFilesDir(context)}/bin/git")) {
-                Tool.extractAssets(context, "zstd")
-                Tool.extractAssets(context, "git.zip.zst")
-                Shell.cmd("chmod 777 ${Path.getExternalFilesDir(context)}/zstd").exec()
-                Shell.cmd("cd ${Path.getExternalFilesDir(context)}; ./zstd -d git.zip.zst").exec()
-                Command.unzip(
-                    "${Path.getExternalFilesDir(context)}/git.zip",
-                    Path.getExternalFilesDir(context)
-                )
-                Command.rm("${Path.getExternalFilesDir(context)}/git.zip")
+            CoroutineScope(Dispatchers.IO).launch {
+                if (!Command.ls("${Path.getExternalFilesDir(context)}/bin/git")) {
+                    Tool.extractAssets(context, "zstd")
+                    Tool.extractAssets(context, "git.zip.zst")
+                    Shell.cmd("chmod 777 ${Path.getExternalFilesDir(context)}/zstd").exec()
+                    Shell.cmd("cd ${Path.getExternalFilesDir(context)}; ./zstd -d git.zip.zst")
+                        .exec()
+                    Command.unzip(
+                        "${Path.getExternalFilesDir(context)}/git.zip",
+                        Path.getExternalFilesDir(context)
+                    )
+                    Command.rm("${Path.getExternalFilesDir(context)}/git.zip")
+                }
+                shell.newJob()
+                    .add("export HOME=${Path.getExternalFilesDir(context)}")
+                    .add("export PATH=${Path.getExternalFilesDir(context)}/bin:\$PATH")
+                    .exec()
             }
-            shell.newJob()
-                .add("export HOME=${Path.getExternalFilesDir(context)}")
-                .add("export PATH=${Path.getExternalFilesDir(context)}/bin:\$PATH")
-                .exec()
             return true
         }
     }
