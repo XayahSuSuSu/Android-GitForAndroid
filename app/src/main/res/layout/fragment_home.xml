@@ -33,6 +33,16 @@
                     app:icon="@drawable/ic_round_git"
                     app:subtext="@{viewModel.gitVersion}"
                     app:text="@string/git_version" />
+
+                <com.xayah.design.LargeActionCard
+                    style="?attr/materialCardViewFilledStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:onClick="@{viewModel.onConfigDialog}"
+                    app:icon="@drawable/ic_round_accounts"
+                    app:subtext="@{viewModel.gitConfig}"
+                    app:text="@string/git_config" />
             </LinearLayout>
 
 

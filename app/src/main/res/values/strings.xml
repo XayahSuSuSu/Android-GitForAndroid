@@ -5,4 +5,12 @@
     <string name="repo">Repo</string>
     <string name="accounts">Accounts</string>
     <string name="git_version">Git version</string>
+    <string name="git_config">Git config</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="type_name">Please type name</string>
+    <string name="type_email">Please type email address</string>
+    <string name="check_config">Please check config</string>
 </resources>
