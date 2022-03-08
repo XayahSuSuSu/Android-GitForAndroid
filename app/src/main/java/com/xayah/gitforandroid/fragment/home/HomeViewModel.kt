@@ -12,11 +12,13 @@ import com.topjohnwu.superuser.Shell
 import com.topjohnwu.superuser.ShellUtils
 import com.xayah.gitforandroid.R
 import com.xayah.gitforandroid.databinding.DialogGitconfigBinding
+import com.xayah.gitforandroid.util.Tool
 
 class HomeViewModel : ViewModel() {
     var gitVersion: ObservableField<String> = ObservableField(getVersion())
     var gitConfig: ObservableField<String> =
         ObservableField(getConfig())
+    val ABI = Tool.getABI()
 
     fun onConfigDialog(v: View) {
         val context = v.context

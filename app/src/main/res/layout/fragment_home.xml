@@ -30,6 +30,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
+                    app:icon="@drawable/ic_round_architecture"
+                    app:subtext="@{viewModel.ABI}"
+                    app:text="@string/architecture" />
+
+                <com.xayah.design.LargeActionCard
+                    style="?attr/materialCardViewFilledStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
                     app:icon="@drawable/ic_round_git"
                     app:subtext="@{viewModel.gitVersion}"
                     app:text="@string/git_version" />
