@@ -68,8 +68,8 @@ class HomeFragment : Fragment() {
                     val params: WindowManager.LayoutParams = builder?.window!!.attributes
                     builder?.window!!.attributes = params
                 }
-                Tool.extractAssets(context, "zstd")
-                Tool.extractAssets(context, "git.zip.zst")
+                Tool.extractAssets(context, "${Tool.getABI()}/zstd", "zstd")
+                Tool.extractAssets(context, "${Tool.getABI()}/git.zip.zst", "git.zip.zst")
                 Shell.cmd("chmod 777 ${Path.getExternalFilesDir(context)}/zstd").exec()
                 Shell.cmd("cd ${Path.getExternalFilesDir(context)}; ./zstd -d git.zip.zst")
                     .exec()
