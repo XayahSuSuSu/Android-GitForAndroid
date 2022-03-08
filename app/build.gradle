@@ -65,4 +65,7 @@ dependencies {
 
     // design
     implementation project(path: ':design')
+
+    // MultiType
+    implementation 'com.drakeet.multitype:multitype:4.3.0'
 }
