@@ -15,4 +15,7 @@
     <string name="check_config">Please check config</string>
     <string name="wait">Wait</string>
     <string name="architecture">Architecture</string>
+    <string name="add">Add</string>
+    <string name="open">Open</string>
+    <string name="delete">Delete</string>
 </resources>
