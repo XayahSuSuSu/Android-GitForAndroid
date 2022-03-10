@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -71,4 +72,9 @@ dependencies {
 
     // MaterialYouFileExplorer
     implementation 'io.github.xayahsususu:materialyoufileexplorer:1.0.6'
+
+    // Room
+    def roomVersion = "2.4.2"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
 }
