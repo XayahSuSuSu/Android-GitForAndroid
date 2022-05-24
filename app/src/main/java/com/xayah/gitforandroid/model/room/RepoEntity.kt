@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class RepoEntity(
-    @PrimaryKey val uid: Int,
+    @PrimaryKey(autoGenerate = true) val uid: Int,
     @ColumnInfo(name = "repo_name") val repoName: String,
     @ColumnInfo(name = "repo_author") val repoAuthor: String,
     @ColumnInfo(name = "repo_path") val repoPath: String,

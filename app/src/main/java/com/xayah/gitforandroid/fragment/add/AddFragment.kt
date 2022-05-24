@@ -11,7 +11,7 @@ class AddFragment : Fragment() {
 
     private var _binding: FragmentAddBinding? = null
 
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
 
     var created: (binding: FragmentAddBinding) -> Unit = {}
 
@@ -30,5 +30,9 @@ class AddFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun getPath(): String {
+        return "${binding.textFieldDown.text}/${binding.textFieldUp.text}"
     }
 }
